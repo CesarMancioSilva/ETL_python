@@ -10,12 +10,16 @@ def get_data_from_api():
 
 		querystring = os.getenv("API_QUERYSTRING")
 
-		headers = os.getenv("API_HEADERS")
+		headers = {
+			"x-rapidapi-key":  os.getenv("API_HEADERS_KEY"),
+			"x-rapidapi-host": os.getenv("API_HEADERS_HOST")
+		}
 
 		response = requests.get(url, headers=headers, params=querystring)
 
 		data_dict = response.json()
-
+			
+		# Acessar o valor da chave 'data'
 		data = data_dict.get('data')
 		print("A requisição foi concluida com sucesso")
 		return data
